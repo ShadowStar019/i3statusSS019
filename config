@@ -5,28 +5,33 @@ general {
 }
 
 order += "disk /" 
-order += "wireless wlp0s20f3" 
-order += "battery 0"
+order += "ethernet enp4s0" 
 order += "cpu_temperature 0"
+order += "cpu_usage"
+order += "memory"
 order += "time"
 order += "volume master"
 
 disk / {
-    format = "%avail available / %total total"
+    format = "Disk: %avail available / %total total"
 }
 
-wireless wlp0s20f3 {
-    format_up = "%essid Bitrate: %bitrate"
-    format_down = "Down"
-}
-
-battery 0 {
-    format = "%status %percentage"
+ethernet enp4s0 {
+    format_up = "Ethernet: Up %speed"
+    format_down = "Ethernet: Down"
 }
 
 cpu_temperature 0 {
-    format = "CPU Temp: %degrees °C"
-    path = /sys/class/thermal/thermal_zone6/temp
+    format = "CPU Temperature: %degrees °C"
+    path = /sys/class/thermal/thermal_zone0/temp
+}
+
+cpu_usage {
+    format = "CPU Usage: %usage"
+}
+
+memory {
+    format = "Memory: %used / %total"
 }
 
 time {
@@ -35,5 +40,5 @@ time {
 
 volume master {
     format = "Volume: %volume"
-    format_muted = "Muted"
+    format_muted = "Volume: Muted"
 }
