@@ -5,6 +5,7 @@ general {
 }
 
 order += "disk /" 
+order += "memory"
 order += "wireless wlp0s20f3" 
 order += "battery 0"
 order += "cpu_temperature 0"
@@ -12,7 +13,7 @@ order += "time"
 order += "volume master"
 
 disk / {
-    format = "%avail available / %total total"
+    format = "Disk: %avail available / %total"
 }
 
 wireless wlp0s20f3 {
@@ -27,6 +28,10 @@ battery 0 {
 cpu_temperature 0 {
     format = "CPU Temp: %degrees °C"
     path = /sys/class/thermal/thermal_zone6/temp
+}
+
+memory {
+    format = "Mem: %used used / %total"
 }
 
 time {
